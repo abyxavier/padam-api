@@ -12,10 +12,10 @@ recommend_router = APIRouter(
                         summary="Recommend movies based on the input movie name. Type in the movie name directly with correct alphabet",
                         description="Recommend Realted Movies with given input movie eg: \n{\"movie\": \"Dune\"}")
 def recommend(request: RecommendationRequest):
-    with get_db() as db:
-        recommend_service = MovieRecommendationFactory.create(db)
-        try:
+    try:
+        with get_db() as db:
+            recommend_service = MovieRecommendationFactory.create(db)
             return recommend_service.recommend(request.movie)
-        except ValueError as e:
-            raise HTTPException(status_code=400, detail=str(e))
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
         
