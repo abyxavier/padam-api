@@ -12,5 +12,4 @@ class ExplanationService(IExplanationService):
         return (
             f"Because you liked '{input_movie.title}', "
             f"'{recommended_movie.title}' shares similar themes and tone. "
-            f"Similarity score: {round(similarity_score, 3)}."
-        )
+            )
